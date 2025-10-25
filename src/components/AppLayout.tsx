@@ -1,10 +1,10 @@
-import { Shield, LayoutDashboard, Package, LogOut, Rocket, Server } from 'lucide-react';
+import { Shield, LayoutDashboard, Package, LogOut, Rocket, Server, Brain } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface AppLayoutProps {
   children: React.ReactNode;
-  currentPage: 'dashboard' | 'servers' | 'patches' | 'apply';
-  onNavigate: (page: 'dashboard' | 'servers' | 'patches' | 'apply') => void;
+  currentPage: 'dashboard' | 'servers' | 'patches' | 'apply' | 'anomaly';
+  onNavigate: (page: 'dashboard' | 'servers' | 'patches' | 'apply' | 'anomaly') => void;
   onLogout: () => void;
 }
 
@@ -69,6 +69,17 @@ export function AppLayout({ children, currentPage, onNavigate, onLogout }: AppLa
               >
                 <Rocket className="w-4 h-4 mr-2" />
                 Apply
+              </Button>
+              <Button
+                variant={currentPage === 'anomaly' ? 'default' : 'ghost'}
+                onClick={() => onNavigate('anomaly')}
+                className={currentPage === 'anomaly' 
+                  ? 'bg-teal-600 hover:bg-teal-700 text-white' 
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                }
+              >
+                <Brain className="w-4 h-4 mr-2" />
+                Anomaly
               </Button>
               <Button
                 variant="ghost"
